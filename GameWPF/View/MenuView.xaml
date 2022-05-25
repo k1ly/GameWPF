@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="GameWPF.View.MenuView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameWPF.View"
+        xmlns:vm="clr-namespace:GameWPF.ViewModel"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{DynamicResource MenuBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
+            <StackPanel.Resources>
+                <Style BasedOn="{StaticResource MenuButton}" TargetType="{x:Type Button}">
+                    <Setter Property="Margin" Value="0 10 0 0"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Play}"
+                    Content="{DynamicResource m_Menu_Play}"/>
+            <Button Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Character}"
+                    Content="{DynamicResource m_Menu_Character}"/>
+            <Button Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Store}"
+                    Content="{DynamicResource m_Menu_Store}"/>
+            <Button Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Settings}"
+                    Content="{DynamicResource m_Menu_Settings}"/>
+            <Button Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Exit}"
+                    Content="{DynamicResource m_Menu_Exit}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

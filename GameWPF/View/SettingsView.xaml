@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="GameWPF.View.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GameWPF.View"
+        xmlns:vm="clr-namespace:GameWPF.ViewModel"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <local:Header DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+        <Grid Grid.Row="1" Background="{StaticResource MenuBackground}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="1" Grid.Row="1">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="20"/>
+                        <Setter Property="Width" Value="300"/>
+                        <Setter Property="Background" Value="{StaticResource SemiTransparentBackground}"/>
+                    </Style>
+                </Border.Style>
+                <StackPanel>
+                    <Label Style="{StaticResource DefaultLabel}" Margin="0 0 0 5" HorizontalAlignment="Center" FontSize="25" Content="{Binding User.Name}"/>
+                    <Label Style="{StaticResource DefaultLabel}" Content="{DynamicResource m_Settings_Language}"/>
+                    <ComboBox Style="{StaticResource DefaultComboBox}" ItemsSource="{Binding Languages}" SelectedValue="{Binding SelectedLanguage}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Label Style="{StaticResource DefaultLabel}" Margin="0 10 0 0" Content="{DynamicResource m_Settings_Mode}"/>
+                    <ComboBox Style="{StaticResource DefaultComboBox}" ItemsSource="{Binding WindowModes}" SelectedValue="{Binding SelectedWindowMode}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <Binding Path="Name" Converter="{StaticResource stringConverter}" ConverterParameter="m_Settings_{0}"/>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <CheckBox IsChecked="{Binding DoNotLogOut}" Margin="0 10 0 0" Foreground="White"
+                              Content="{DynamicResource m_Settings_DoNotLogOut}"/>
+                    <Button Style="{StaticResource DefaultButton}" Margin="0 10 0 0" Command="{Binding SaveChangesCommand}"
+                            Content="{DynamicResource m_Settings_Save}"/>
+                    <Button Style="{StaticResource DefaultButton}" Margin="15 10 15 0" Command="{Binding LogOutCommand}"
+                            Content="{DynamicResource m_Settings_LogOut}"/>
+                    <Grid Margin="0 15 0 0" Visibility="{Binding IsUserRoleAdmin, Converter={StaticResource boolConverter}}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Admin}"
+                                Content="{DynamicResource m_Settings_AdminRef}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource RefButton}">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

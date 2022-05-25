@@ -1,0 +1,439 @@
+﻿<UserControl x:Class="GameWPF.View.CharacterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:GameWPF.View"
+        mc:Ignorable="d"
+        d:DesignHeight="550" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="LevelBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="Yellow" Offset="0.0"/>
+            <GradientStop Color="#FFF2A014" Offset="1.0"/>
+        </LinearGradientBrush>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource MenuBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <local:Header DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+        <Grid Grid.RowSpan="3" Panel.ZIndex="10" Visibility="{Binding IsModalVisible, Converter={StaticResource boolConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <SolidColorBrush Color="Gray" Opacity="0.4"/>
+            </Grid.Background>
+            <Border Grid.Column="1" Grid.Row="1">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Width" Value="300"/>
+                        <Setter Property="BorderThickness" Value="5"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Background" Value="AliceBlue"/>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.RowSpan="2" Margin="15">
+                        <Label Style="{StaticResource DefaultTitle}" HorizontalAlignment="Center"
+                               Content="{DynamicResource m_Character_New}"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Image Height="100" Width="100" Source="{Binding SelectedCharacterClass.Image}"/>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Label Content="{DynamicResource m_Character_Health}"/>
+                                <Label Grid.Column="1" Content="{Binding SelectedCharacterClass.BaseHealth}"/>
+                                <Label Grid.Row="1" Content="{DynamicResource m_Character_Endurance}"/>
+                                <Label Grid.Column="1" Grid.Row="1" Content="{Binding SelectedCharacterClass.BaseEndurance}"/>
+                                <Label Grid.Row="2" Content="{DynamicResource m_Character_Damage}"/>
+                                <Label Grid.Column="1" Grid.Row="2" Content="{Binding SelectedCharacterClass.BaseDamage}"/>
+                            </Grid>
+                        </Grid>
+                        <Label Margin="0 10 0 0" Content="{DynamicResource m_Character_SelectClass}"/>
+                        <ComboBox Style="{StaticResource DefaultComboBox}" ItemsSource="{Binding CharacterClasses}" SelectedItem="{Binding SelectedCharacterClass}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label Margin="0 10 0 0" Content="{DynamicResource m_Character_EnterName}"/>
+                        <TextBox Style="{StaticResource DefaultInput}" Text="{Binding CharacterName}"/>
+                        <Button Style="{StaticResource DefaultButton}" Margin="0 15 0 0" Width="150" Command="{Binding ConfirmCreateCommand}"
+                                 Content="{DynamicResource m_Character_Confirm}"/>
+                    </StackPanel>
+                    <Button Style="{StaticResource CloseModalButton}" Command="{Binding CloseModalCommand}">X</Button>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Grid.RowSpan="2" Margin="7 0 7 7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="500"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Background" Value="{StaticResource SemiTransparentBackground}"/>
+                        <Style.Triggers>
+                            <DataTrigger Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                        <Binding Path="SelectedCharacter"/>
+                                        <Binding Source="{x:Null}"/>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="Label" BasedOn="{StaticResource DefaultLabel}"/>
+                        <Style x:Key="UnequipButtonBinded" TargetType="Button" BasedOn="{StaticResource UnequipButton}">
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                            <Style.Triggers>
+                                <DataTrigger Value="True">
+                                    <DataTrigger.Binding>
+                                        <MultiBinding Converter="{StaticResource equalityConverter}">
+                                            <Binding Path="SelectedCharacter"/>
+                                            <Binding Source="{x:Null}"/>
+                                        </MultiBinding>
+                                    </DataTrigger.Binding>
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid Margin="20">
+                        <Image Source="{Binding SelectedCharacter.Weapon.Item.Image}"/>
+                        <Button Command="{Binding ToggleEquipItemCommand}" CommandParameter="{Binding SelectedCharacter.Weapon}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource UnequipButtonBinded}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="SelectedCharacter.Weapon"/>
+                                                    <Binding Source="{x:Null}"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="20">
+                        <Image Source="{Binding SelectedCharacter.Util.Item.Image}"/>
+                        <Button Command="{Binding ToggleEquipItemCommand}" CommandParameter="{Binding SelectedCharacter.Util}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource UnequipButtonBinded}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="SelectedCharacter.Util"/>
+                                                    <Binding Source="{x:Null}"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="2" Margin="20">
+                        <Image Source="{Binding SelectedCharacter.Head.Item.Image}"/>
+                        <Button Command="{Binding ToggleEquipItemCommand}" CommandParameter="{Binding SelectedCharacter.Head}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource UnequipButtonBinded}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="SelectedCharacter.Head"/>
+                                                    <Binding Source="{x:Null}"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="2" Grid.Row="1" Margin="20">
+                        <Image Source="{Binding SelectedCharacter.Armor.Item.Image}"/>
+                        <Button Command="{Binding ToggleEquipItemCommand}" CommandParameter="{Binding SelectedCharacter.Armor}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource UnequipButtonBinded}">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="SelectedCharacter.Armor"/>
+                                                    <Binding Source="{x:Null}"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#FF360233" Content="{Binding SelectedCharacter.Name}">
+                            <Label.Background>
+                                <RadialGradientBrush>
+                                    <GradientStop Color="#FFEE6B15" Offset="0.0"/>
+                                    <GradientStop Color="#FFF2DC09" Offset="1.0"/>
+                                </RadialGradientBrush>
+                            </Label.Background>
+                        </Label>
+                        <Border Grid.Row="1" CornerRadius="10" Margin="15" Background="{DynamicResource ImageBgBrush}">
+                            <Grid>
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="{Binding SelectedCharacter.Class.Image}"/>
+                                </Grid.Background>
+                                <Grid VerticalAlignment="Bottom" Margin="45 0 10 10" Height="20">
+                                    <ProgressBar Foreground="{StaticResource LevelBrush}" Value="{Binding SelectedCharacter.Experience}" Maximum="{Binding MaxExp}"/>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} / {1}">
+                                                <Binding Path="SelectedCharacter.Experience"/>
+                                                <Binding Path="MaxExp"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </Grid>
+                                <Border HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="50" Height="50" CornerRadius="25" Background="{StaticResource LevelBrush}">
+                                    <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="{Binding SelectedCharacter.Level}"/>
+                                </Border>
+                            </Grid>
+                        </Border>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="{DynamicResource m_Character_Health}"/>
+                            <Label Grid.Column="1" Content="{Binding SelectedCharacter.Health}"/>
+                            <Label Grid.Column="2">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Style.Triggers>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                        <Binding Path="SelectedCharacter.Head"/>
+                                                        <Binding Path="SelectedCharacter.Armor"/>
+                                                        <Binding Source="{x:Null}"/>
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                                <TextBlock Foreground="#FF52F737">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource mathConverter}" ConverterParameter="+" StringFormat="+ {0}">
+                                            <Binding Path="SelectedCharacter.Head.Item.Stat"/>
+                                            <Binding Path="SelectedCharacter.Armor.Item.Stat"/>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Label>
+                            <Label Grid.Row="1" Content="{DynamicResource m_Character_Endurance}"/>
+                            <Label Grid.Row="1" Grid.Column="1" Content="{Binding SelectedCharacter.Endurance}"/>
+                            <Label Grid.Row="2" Content="{DynamicResource m_Character_Damage}"/>
+                            <Label Grid.Row="2" Grid.Column="1" Content="{Binding SelectedCharacter.Damage}"/>
+                            <Label Grid.Row="2" Grid.Column="2">
+                                <TextBlock Foreground="#FF52F737" Text="{Binding SelectedCharacter.Weapon.Item.Stat, StringFormat='+ {0}'}"/>
+                            </Label>
+                            <Grid Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Width="20" Source="/Resources/Icon/GoldIcon.png"/>
+                                <Label Grid.Column="1" Content="{Binding SelectedCharacter.Gold}"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Label Grid.Row="1" Style="{StaticResource DefaultLabel}" Margin="15">
+                    <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="{Binding SelectedCharacter.Class.Description}"/>
+                </Label>
+            </Grid>
+            <Border Grid.Column="2" BorderThickness="2" BorderBrush="Gold">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Background" Value="{StaticResource SemiTransparentBackground}"/>
+                        <Style.Triggers>
+                            <DataTrigger Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                        <Binding Path="SelectedCharacter"/>
+                                        <Binding Source="{x:Null}"/>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <Grid>
+                    <ListView ItemsSource="{Binding Inventory}" ScrollViewer.CanContentScroll="False"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid IsItemsHost="True" Columns="4" Rows="5" HorizontalAlignment="Stretch"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border>
+                                    <Grid Tag="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}">
+                                        <ContextMenuService.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="{DynamicResource m_Character_ItemEquip}" Command="{Binding Parent.PlacementTarget.Tag.ToggleEquipItemCommand,
+                                                RelativeSource={RelativeSource Mode=Self}}" CommandParameter="{Binding}"/>
+                                                <MenuItem Header="{DynamicResource m_Character_ItemSell}" Command="{Binding Parent.PlacementTarget.Tag.SellItemCommand,
+                                                RelativeSource={RelativeSource Mode=Self}}" CommandParameter="{Binding}"/>
+                                                <MenuItem Header="{DynamicResource m_Character_ItemRemove}" Command="{Binding Parent.PlacementTarget.Tag.RemoveItemCommand,
+                                                RelativeSource={RelativeSource Mode=Self}}" CommandParameter="{Binding}"/>
+                                            </ContextMenu>
+                                        </ContextMenuService.ContextMenu>
+                                        <Image Source="{Binding Item.Image}"/>
+                                        <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Goldenrod" Content="{Binding Quantity}"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Border>
+            <Border Grid.Column="4" BorderThickness="2" BorderBrush="#FF00DCDC">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.9">
+                        <GradientStop Color="#FF3C0056" Offset="0.0"/>
+                        <GradientStop Color="#FF09000D" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <ListView ItemsSource="{Binding CharacterSet}" SelectedItem="{Binding SelectedCharacter}" Background="Transparent">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Label Style="{StaticResource DefaultLabel}" Content="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding CharacterSelectionChangedCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ListView>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Style="{StaticResource DefaultButton}" Command="{Binding CreateCharacterCommand}"
+                            Content="{DynamicResource m_Character_Create}"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Padding="5 0" Command="{Binding ChooseCharacterCommand}"
+                    Content="{DynamicResource m_Character_Choose}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource PrettyButton}">
+                        <Style.Triggers>
+                            <DataTrigger Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                        <Binding Path="User.ActiveCharacter"/>
+                                        <Binding Path="SelectedCharacter"/>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

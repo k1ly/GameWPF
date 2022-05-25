@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameWPF.ViewModel.AdminViewModel" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <InheritanceLine Type="Prism.Mvvm.BindableBase" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="1.067" />
+        <Point X="4" Y="1.375" />
+        <Point X="6.812" Y="1.375" />
+        <Point X="6.812" Y="1.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>BIAAsAAACBEAwAAgANAAASAgAgEAIAgDCrACAQSUAgA=</HashCode>
+      <FileName>ViewModel\AdminViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.CharacterViewModel" Collapsed="true">
+    <Position X="2.25" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Prism.Mvvm.BindableBase" ManuallyRouted="true">
+      <Path>
+        <Point X="4" Y="1.067" />
+        <Point X="4" Y="2.871" />
+        <Point X="3" Y="2.871" />
+        <Point X="3" Y="3.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AKANgIBgCAIAIAgCAEEIBiBAEAgBoBANAxAAAQAAAAA=</HashCode>
+      <FileName>ViewModel\CharacterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.CommandDelegate" BaseTypeListCollapsed="true">
+    <Position X="8" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\CommandDelegate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.ViewModel.CommandDelegate&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\CommandDelegate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.ViewModel.LoginViewModel" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgggCQAAAgAAAAAIABAAQSAAABAEAAAAAIgQABKIEAg=</HashCode>
+      <FileName>ViewModel\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.MainViewModel" Collapsed="true">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAAIADACEAEAQBACAEACAAKCUAACBgAAAAQBAA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.MenuViewModel" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\MenuViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.MessagingViewModel" Collapsed="true">
+    <Position X="4.25" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Prism.Mvvm.BindableBase" ManuallyRouted="true">
+      <Path>
+        <Point X="4" Y="1.067" />
+        <Point X="4" Y="2.874" />
+        <Point X="5" Y="2.874" />
+        <Point X="5" Y="3.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AwIBEAAAABgAgAAAAKIAACAAAAECIAAAALgCAAGcAgE=</HashCode>
+      <FileName>ViewModel\MessagingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.PlayViewModel" Collapsed="true">
+    <Position X="3.25" Y="4.5" Width="1.5" />
+    <InheritanceLine Type="Prism.Mvvm.BindableBase" ManuallyRouted="true">
+      <Path>
+        <Point X="4" Y="1.067" />
+        <Point X="4" Y="4.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\PlayViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.RegisterViewModel" Collapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Prism.Mvvm.BindableBase" ManuallyRouted="true">
+      <Path>
+        <Point X="4" Y="1.067" />
+        <Point X="4" Y="2.873" />
+        <Point X="1.25" Y="2.873" />
+        <Point X="1.25" Y="3.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EoQgCQAAAgAAAAAJEAAAQTAQAJAFAACAAQgQABOEAAg=</HashCode>
+      <FileName>ViewModel\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.SettingsViewModel" Collapsed="true">
+    <Position X="1.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACgAAAKIACAGAAAgDAACAAAAAAAAAAAJAAgIAAAAA=</HashCode>
+      <FileName>ViewModel\SettingsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.StoreViewModel" Collapsed="true">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAhgAACoAAACAAAAAgAACACAAAAAAABAhAgAQAQKgA=</HashCode>
+      <FileName>ViewModel\StoreViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.ViewModel.TradingViewModel" Collapsed="true">
+    <Position X="6" Y="3.25" Width="1.5" />
+    <InheritanceLine Type="Prism.Mvvm.BindableBase" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="1.067" />
+        <Point X="4" Y="2.874" />
+        <Point X="6.75" Y="2.874" />
+        <Point X="6.75" Y="3.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>wKEDgACBAIQmgAIhIIAAA6AAAkdgIAoNO7AbDZC0EgE=</HashCode>
+      <FileName>ViewModel\TradingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.View.AdminView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\AdminView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.CharacterView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CharacterView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.LoginView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LoginView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.MenuView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MenuView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.MessagingView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MessagingView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.PlayView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PlayView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.RegisterView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\RegisterView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.SettingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\SettingsView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.StoreView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\StoreView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.View.TradingView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\TradingView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="GameWPF.Util.Hash.SaltedHash">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EABAAAAAAAIAAQAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Util\Hash\SaltedHash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.GameDBContainer" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAACAAAIBAAAAAAEAAAgAgAAQgAARAAAgA=</HashCode>
+      <FileName>Model\GameModel.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.Character" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADCACAAAAAAIAACAIAAAQAAAAAAAgBEAAAAgCAQAE=</HashCode>
+      <FileName>Model\Character.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.CharacterClass" Collapsed="true">
+    <Position X="11.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAEAAAAAAAQAAAAAABIAEEAAAAAIAAA=</HashCode>
+      <FileName>Model\CharacterClass.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.Container" Collapsed="true">
+    <Position X="11.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Container.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.ContainerItem" Collapsed="true">
+    <Position X="11.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\ContainerItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.Item" Collapsed="true">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAgAAAAAAAAAAQAAAAAABABAAIACAAAAgA=</HashCode>
+      <FileName>Model\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.ItemType" Collapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgAIAAAAAAAAAAAAAAAQAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ItemType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.Message" Collapsed="true">
+    <Position X="8" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAEAAABAEAACAAIAAA=</HashCode>
+      <FileName>Model\Message.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.TradeOffer" Collapsed="true">
+    <Position X="9.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAEAAAAAAIAEAAAAAAAAAAEAAABAAAAAAAIAAA=</HashCode>
+      <FileName>Model\TradeOffer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.User" Collapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAEAAAAAAAAMAAAIAQBAAAAAAAACQAQAAgQAAA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.UserRole" Collapsed="true">
+    <Position X="8.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Model\UserRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameWPF.Model.UserStatus" Collapsed="true">
+    <Position X="10.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAAAAAAAAAAAAQAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Model\UserStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Prism.Mvvm.BindableBase" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9.16" />
+</ClassDiagram>

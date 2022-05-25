@@ -1,0 +1,115 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="m_PasswordTip">Пароль должен содержать</s:String>
+    <s:String x:Key="m_PasswordTip1">● Букву нижнего регистра</s:String>
+    <s:String x:Key="m_PasswordTip2">● Заглавную букву</s:String>
+    <s:String x:Key="m_PasswordTip3">● Цифру</s:String>
+    <s:String x:Key="m_PasswordTip4">● Минимум 8 символов</s:String>
+
+    <s:String x:Key="m_Login_Login">Логин</s:String>
+    <s:String x:Key="m_Login_EnterLogin">Введите свой логин</s:String>
+    <s:String x:Key="m_Login_Password">Пароль</s:String>
+    <s:String x:Key="m_Login_Remember">Запомнить меня</s:String>
+    <s:String x:Key="m_Login_Warning">Неверный логин или пароль</s:String>
+    <s:String x:Key="m_Login_SignIn">Войти</s:String>
+    <s:String x:Key="m_Login_RegisterRef">Создать учетную запись.</s:String>
+
+    <s:String x:Key="m_Register_Name">Имя</s:String>
+    <s:String x:Key="m_Register_EnterName">Введите свое имя</s:String>
+    <s:String x:Key="m_Register_Login">Логин</s:String>
+    <s:String x:Key="m_Register_EnterLogin">Введите свой логин</s:String>
+    <s:String x:Key="m_Register_Password">Пароль</s:String>
+    <s:String x:Key="m_Register_Repeat">Повторите пароль</s:String>
+    <s:String x:Key="m_Register_Warning">Этот логин уже используется</s:String>
+    <s:String x:Key="m_Register_Register">Зарегистрироваться</s:String>
+    <s:String x:Key="m_Register_LoginRef">Есть учетная запись? Войдите.</s:String>
+
+    <s:String x:Key="m_Play_Warning">Вы должны выбрать активного персонажа!</s:String>
+    <s:String x:Key="m_Play_Menu">Меню</s:String>
+    
+    <s:String x:Key="m_Menu_Play">Играть</s:String>
+    <s:String x:Key="m_Menu_Character">Персонаж</s:String>
+    <s:String x:Key="m_Menu_Store">Магазин</s:String>
+    <s:String x:Key="m_Menu_Settings">Настройки</s:String>
+    <s:String x:Key="m_Menu_Exit">Выход</s:String>
+
+    <s:String x:Key="m_Character_New">Новый персонаж</s:String>
+    <s:String x:Key="m_Character_Health">Здоровье</s:String>
+    <s:String x:Key="m_Character_Endurance">Выносливость</s:String>
+    <s:String x:Key="m_Character_Damage">Урон</s:String>
+    <s:String x:Key="m_Character_SelectClass">Выберите класс персонажа</s:String>
+    <s:String x:Key="m_Character_EnterName">Введите имя персонажа</s:String>
+    <s:String x:Key="m_Character_Confirm">Подтвердить</s:String>
+    <s:String x:Key="m_Character_ItemEquip">Экипировать</s:String>
+    <s:String x:Key="m_Character_ItemSell">Продать</s:String>
+    <s:String x:Key="m_Character_ItemRemove">Удалить</s:String>
+    <s:String x:Key="m_Character_Create">Создать нового персонажа</s:String>
+    <s:String x:Key="m_Character_Choose">Выбрать этого персонажа</s:String>
+
+    <s:String x:Key="m_Store_PurchaseItem">Купить предмет</s:String>
+    <s:String x:Key="m_Store_Purchase">Покупка</s:String>
+    <s:String x:Key="m_Store_PurchaseWarning">Для покупки товаров необходимо сначала выбрать активного персонажа!</s:String>
+    <s:String x:Key="m_Store_ItemClass">Класс предмета</s:String>
+    <s:String x:Key="m_Store_CommandTip">E — покупка</s:String>
+    <s:String x:Key="m_Store_Warning">Сначала выберите активного персонажа!</s:String>
+
+    <s:String x:Key="m_Messaging_Select">Выберите пользователя для переписки.</s:String>
+    <s:String x:Key="m_Messaging_NoMessages">Сообщений пока нет.</s:String>
+
+    <s:String x:Key="m_Trading_Warning">Предложение обмена не принято, поскольку содержит неверные или устаревшие данные!</s:String>
+    <s:String x:Key="m_Trading_Character">Чтобы сделать предложение, вы и ваш получатель должны выбрать активного персонажа</s:String>
+    <s:String x:Key="m_Trading_YourInventory">Ваш инвентарь</s:String>
+    <s:String x:Key="m_Trading_RecInventory">Инвентарь получателя</s:String>
+    <s:String x:Key="m_Trading_AddItem">Добавить элемент</s:String>
+    <s:String x:Key="m_Trading_TradeOffer">Предложение обмена</s:String>
+    <s:String x:Key="m_Trading_Inventory">Инвентарь</s:String>
+    <s:String x:Key="m_Trading_Create">Создать предложение обмена</s:String>
+    <s:String x:Key="m_Trading_NoTradeOffers">Предложений обмена пока нет.</s:String>
+    <s:String x:Key="m_Trading_YouGive">Вы отдаете</s:String>
+    <s:String x:Key="m_Trading_UserGives">отдает</s:String>
+    <s:String x:Key="m_Trading_Accept">Принять</s:String>
+
+    <s:String x:Key="m_Settings_Language">Язык</s:String>
+    <s:String x:Key="m_Settings_Mode">Режим окна</s:String>
+    <s:String x:Key="m_Settings_DoNotLogOut">Не выходить из системы</s:String>
+    <s:String x:Key="m_Settings_Save">Сохранить изменения</s:String>
+    <s:String x:Key="m_Settings_LogOut">Выйти</s:String>
+    <s:String x:Key="m_Settings_AdminRef">Администрирование</s:String>
+    <s:String x:Key="m_Settings_FullScreen">Во весь экран</s:String>
+    <s:String x:Key="m_Settings_Windowed">Оконный режим</s:String>
+    <s:String x:Key="m_Settings_WindowBordered">Окно с рамкой</s:String>
+
+    <s:String x:Key="m_Admin_Editing">Редактирование</s:String>
+    <s:String x:Key="m_Admin_UserRole">Роль</s:String>
+    <s:String x:Key="m_Admin_UserStatus">Статус</s:String>
+    <s:String x:Key="m_Admin_Ok">Ок</s:String>
+    <s:String x:Key="m_Admin_Edit">Изменить</s:String>
+    <s:String x:Key="m_Admin_Name">Имя</s:String>
+    <s:String x:Key="m_Admin_Login">Логин</s:String>
+    <s:String x:Key="m_Admin_Role">Роль</s:String>
+    <s:String x:Key="m_Admin_Status">Статус</s:String>
+    <s:String x:Key="m_Admin_Messages">Сообщения</s:String>
+    <s:String x:Key="m_Admin_Sender">Отправитель</s:String>
+    <s:String x:Key="m_Admin_Receiver">Получатель</s:String>
+    <s:String x:Key="m_Admin_Date">Дата</s:String>
+    <s:String x:Key="m_Admin_Text">Текст</s:String>
+    <s:String x:Key="m_Admin_TradeOffers">Предложения обмена</s:String>
+    <s:String x:Key="m_Admin_Items">Элементы</s:String>
+    <s:String x:Key="m_Admin_Comment">Комментарий</s:String>
+    <s:String x:Key="m_Admin_UserGives">отдает</s:String>
+    <s:String x:Key="m_Admin_Characters">Персонажи</s:String>
+    <s:String x:Key="m_Admin_Class">Класс</s:String>
+    <s:String x:Key="m_Admin_Level">Уровень</s:String>
+    <s:String x:Key="m_Admin_Exp">Опыт</s:String>
+    <s:String x:Key="m_Admin_Gold">Золото</s:String>
+    <s:String x:Key="m_Admin_Health">Здоровье</s:String>
+    <s:String x:Key="m_Admin_Endurance">Выносливость</s:String>
+    <s:String x:Key="m_Admin_Damage">Урон</s:String>
+    <s:String x:Key="m_Admin_Weapon">Оружие</s:String>
+    <s:String x:Key="m_Admin_Util">Расходник</s:String>
+    <s:String x:Key="m_Admin_Head">Головной убор</s:String>
+    <s:String x:Key="m_Admin_Armor">Броня</s:String>
+
+</ResourceDictionary>

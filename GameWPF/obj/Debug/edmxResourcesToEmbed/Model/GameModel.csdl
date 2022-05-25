@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GameDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CharacterClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BaseHealth" Type="Int32" Nullable="false" />
+    <Property Name="BaseEndurance" Type="Int32" Nullable="false" />
+    <Property Name="BaseDamage" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Character">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <Property Name="Experience" Type="Int32" Nullable="false" />
+    <Property Name="Gold" Type="Int32" Nullable="false" />
+    <Property Name="Health" Type="Int32" Nullable="false" />
+    <Property Name="Endurance" Type="Int32" Nullable="false" />
+    <Property Name="Damage" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Class" Relationship="Self.FK_CharacterCharacterClass" FromRole="Characters" ToRole="CharacterClasses" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserCharacters" FromRole="Characters" ToRole="Users" />
+    <NavigationProperty Name="Inventory" Relationship="Self.FK_CharacterInventory" FromRole="Characters" ToRole="Containers" />
+    <NavigationProperty Name="Weapon" Relationship="Self.FK_CharacterWeapon" FromRole="Characters" ToRole="ContainerItems" />
+    <NavigationProperty Name="Util" Relationship="Self.FK_CharacterUtil" FromRole="Characters" ToRole="ContainerItems" />
+    <NavigationProperty Name="Head" Relationship="Self.FK_CharacterHead" FromRole="Characters" ToRole="ContainerItems" />
+    <NavigationProperty Name="Armor" Relationship="Self.FK_CharacterArmor" FromRole="Characters" ToRole="ContainerItems" />
+  </EntityType>
+  <EntityType Name="ContainerItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Container" Relationship="Self.FK_ContainerItemContainer" FromRole="ContainerItems" ToRole="Containers" />
+    <NavigationProperty Name="Item" Relationship="Self.FK_ContainerItemItem" FromRole="ContainerItems" ToRole="Items" />
+  </EntityType>
+  <EntityType Name="Container">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="ContainerItems" Relationship="Self.FK_ContainerItemContainer" FromRole="Containers" ToRole="ContainerItems" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Stat" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ItemClass" Relationship="Self.FK_ItemItemClass" FromRole="Items" ToRole="CharacterClasses" />
+    <NavigationProperty Name="ItemType" Relationship="Self.FK_ItemItemType" FromRole="Items" ToRole="ItemTypes" />
+  </EntityType>
+  <EntityType Name="ItemType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsNew" Type="Boolean" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Sender" Relationship="Self.FK_MessageSender" FromRole="Messages" ToRole="Users" />
+    <NavigationProperty Name="Receiver" Relationship="Self.FK_MessageReceiver" FromRole="Messages" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="TradeOffer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Sender" Relationship="Self.FK_TradeOfferSender" FromRole="TradeOffers" ToRole="Users" />
+    <NavigationProperty Name="Receiver" Relationship="Self.FK_TradeOfferReceiver" FromRole="TradeOffers" ToRole="Users" />
+    <NavigationProperty Name="SenderContainer" Relationship="Self.FK_TradeOfferSenderContainer" FromRole="TradeOffers" ToRole="Containers" />
+    <NavigationProperty Name="ReceiverContainer" Relationship="Self.FK_TradeOfferReceiverContainer" FromRole="TradeOffers" ToRole="Containers" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PswHash" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="PswSalt" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_UserUserRole" FromRole="Users" ToRole="UserRoles" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_UserUserStatus" FromRole="Users" ToRole="UserStatuses" />
+    <NavigationProperty Name="Characters" Relationship="Self.FK_UserCharacters" FromRole="Users" ToRole="Characters" />
+    <NavigationProperty Name="ActiveCharacter" Relationship="Self.FK_UserActiveCharacter" FromRole="Users" ToRole="Characters" />
+    <NavigationProperty Name="SentMessages" Relationship="Self.FK_MessageSender" FromRole="Users" ToRole="Messages" />
+    <NavigationProperty Name="ReceivedMessages" Relationship="Self.FK_MessageReceiver" FromRole="Users" ToRole="Messages" />
+    <NavigationProperty Name="SentTradeOffers" Relationship="Self.FK_TradeOfferSender" FromRole="Users" ToRole="TradeOffers" />
+    <NavigationProperty Name="ReceivedTradeOffers" Relationship="Self.FK_TradeOfferReceiver" FromRole="Users" ToRole="TradeOffers" />
+  </EntityType>
+  <EntityType Name="UserStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_CharacterCharacterClass">
+    <End Role="CharacterClasses" Type="GameDBModel.CharacterClass" Multiplicity="1" />
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ItemItemClass">
+    <End Role="CharacterClasses" Type="GameDBModel.CharacterClass" Multiplicity="1" />
+    <End Role="Items" Type="GameDBModel.Item" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_CharacterArmor">
+    <End Role="ContainerItems" Type="GameDBModel.ContainerItem" Multiplicity="0..1" />
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_CharacterHead">
+    <End Role="ContainerItems" Type="GameDBModel.ContainerItem" Multiplicity="0..1" />
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_CharacterInventory">
+    <End Role="Containers" Type="GameDBModel.Container" Multiplicity="1" />
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_CharacterUtil">
+    <End Role="ContainerItems" Type="GameDBModel.ContainerItem" Multiplicity="0..1" />
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_CharacterWeapon">
+    <End Role="ContainerItems" Type="GameDBModel.ContainerItem" Multiplicity="0..1" />
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_UserActiveCharacter">
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="0..1" />
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_UserCharacters">
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="1" />
+    <End Role="Characters" Type="GameDBModel.Character" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ContainerItemContainer">
+    <End Role="Containers" Type="GameDBModel.Container" Multiplicity="1" />
+    <End Role="ContainerItems" Type="GameDBModel.ContainerItem" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ContainerItemItem">
+    <End Role="Items" Type="GameDBModel.Item" Multiplicity="1" />
+    <End Role="ContainerItems" Type="GameDBModel.ContainerItem" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_TradeOfferReceiverContainer">
+    <End Role="Containers" Type="GameDBModel.Container" Multiplicity="1" />
+    <End Role="TradeOffers" Type="GameDBModel.TradeOffer" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_TradeOfferSenderContainer">
+    <End Role="Containers" Type="GameDBModel.Container" Multiplicity="1" />
+    <End Role="TradeOffers" Type="GameDBModel.TradeOffer" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_ItemItemType">
+    <End Role="ItemTypes" Type="GameDBModel.ItemType" Multiplicity="1" />
+    <End Role="Items" Type="GameDBModel.Item" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_MessageReceiver">
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="1" />
+    <End Role="Messages" Type="GameDBModel.Message" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_MessageSender">
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="1" />
+    <End Role="Messages" Type="GameDBModel.Message" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_TradeOfferReceiver">
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="1" />
+    <End Role="TradeOffers" Type="GameDBModel.TradeOffer" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_TradeOfferSender">
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="1" />
+    <End Role="TradeOffers" Type="GameDBModel.TradeOffer" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_UserUserRole">
+    <End Role="UserRoles" Type="GameDBModel.UserRole" Multiplicity="1" />
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_UserUserStatus">
+    <End Role="UserStatuses" Type="GameDBModel.UserStatus" Multiplicity="1" />
+    <End Role="Users" Type="GameDBModel.User" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="GameDBContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CharacterClasses" EntityType="GameDBModel.CharacterClass" />
+    <EntitySet Name="Characters" EntityType="GameDBModel.Character" />
+    <EntitySet Name="ContainerItems" EntityType="GameDBModel.ContainerItem" />
+    <EntitySet Name="Containers" EntityType="GameDBModel.Container" />
+    <EntitySet Name="Items" EntityType="GameDBModel.Item" />
+    <EntitySet Name="ItemTypes" EntityType="GameDBModel.ItemType" />
+    <EntitySet Name="Messages" EntityType="GameDBModel.Message" />
+    <EntitySet Name="TradeOffers" EntityType="GameDBModel.TradeOffer" />
+    <EntitySet Name="UserRoles" EntityType="GameDBModel.UserRole" />
+    <EntitySet Name="Users" EntityType="GameDBModel.User" />
+    <EntitySet Name="UserStatuses" EntityType="GameDBModel.UserStatus" />
+    <AssociationSet Name="FK_CharacterCharacterClass" Association="Self.FK_CharacterCharacterClass">
+      <End Role="CharacterClasses" EntitySet="CharacterClasses" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemItemClass" Association="Self.FK_ItemItemClass">
+      <End Role="CharacterClasses" EntitySet="CharacterClasses" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CharacterArmor" Association="Self.FK_CharacterArmor">
+      <End Role="ContainerItems" EntitySet="ContainerItems" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CharacterHead" Association="Self.FK_CharacterHead">
+      <End Role="ContainerItems" EntitySet="ContainerItems" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CharacterInventory" Association="Self.FK_CharacterInventory">
+      <End Role="Containers" EntitySet="Containers" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CharacterUtil" Association="Self.FK_CharacterUtil">
+      <End Role="ContainerItems" EntitySet="ContainerItems" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CharacterWeapon" Association="Self.FK_CharacterWeapon">
+      <End Role="ContainerItems" EntitySet="ContainerItems" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserActiveCharacter" Association="Self.FK_UserActiveCharacter">
+      <End Role="Characters" EntitySet="Characters" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserCharacters" Association="Self.FK_UserCharacters">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContainerItemContainer" Association="Self.FK_ContainerItemContainer">
+      <End Role="Containers" EntitySet="Containers" />
+      <End Role="ContainerItems" EntitySet="ContainerItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContainerItemItem" Association="Self.FK_ContainerItemItem">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="ContainerItems" EntitySet="ContainerItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TradeOfferReceiverContainer" Association="Self.FK_TradeOfferReceiverContainer">
+      <End Role="Containers" EntitySet="Containers" />
+      <End Role="TradeOffers" EntitySet="TradeOffers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TradeOfferSenderContainer" Association="Self.FK_TradeOfferSenderContainer">
+      <End Role="Containers" EntitySet="Containers" />
+      <End Role="TradeOffers" EntitySet="TradeOffers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemItemType" Association="Self.FK_ItemItemType">
+      <End Role="ItemTypes" EntitySet="ItemTypes" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageReceiver" Association="Self.FK_MessageReceiver">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MessageSender" Association="Self.FK_MessageSender">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Messages" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TradeOfferReceiver" Association="Self.FK_TradeOfferReceiver">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TradeOffers" EntitySet="TradeOffers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TradeOfferSender" Association="Self.FK_TradeOfferSender">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TradeOffers" EntitySet="TradeOffers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserRole" Association="Self.FK_UserUserRole">
+      <End Role="UserRoles" EntitySet="UserRoles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserUserStatus" Association="Self.FK_UserUserStatus">
+      <End Role="UserStatuses" EntitySet="UserStatuses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

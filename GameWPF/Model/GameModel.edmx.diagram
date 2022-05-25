@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e8fa2c24e80247ab85b8e09ce783de2c" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="GameDBModel.CharacterClass" Width="1.5" PointX="1.375" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.Character" Width="1.5" PointX="1.375" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.ContainerItem" Width="1.5" PointX="6.125" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.Container" Width="1.5" PointX="6.125" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.Item" Width="1.5" PointX="3.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.ItemType" Width="1.5" PointX="6.125" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.Message" Width="1.5" PointX="1.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.TradeOffer" Width="1.5" PointX="3.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.UserRole" Width="1.5" PointX="6.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.User" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDBModel.UserStatus" Width="1.5" PointX="6.125" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="GameDBModel.FK_CharacterCharacterClass" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_ItemItemClass" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_CharacterArmor" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_CharacterHead" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_CharacterInventory" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_CharacterUtil" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_CharacterWeapon" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_UserActiveCharacter" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_UserCharacters" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_ContainerItemContainer" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_ContainerItemItem" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_TradeOfferReceiverContainer" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_TradeOfferSenderContainer" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_ItemItemType" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_MessageReceiver" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_MessageSender" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_TradeOfferReceiver" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_TradeOfferSender" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_UserUserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDBModel.FK_UserUserStatus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

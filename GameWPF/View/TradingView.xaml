@@ -1,0 +1,631 @@
+﻿<UserControl x:Class="GameWPF.View.TradingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:GameWPF.View"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{StaticResource MenuBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <local:Header DataContext="{Binding DataContext, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}}"/>
+        <Border Grid.RowSpan="3" Panel.ZIndex="10" Visibility="{Binding IsTradeOfferInvalid, Converter={StaticResource boolConverter}}">
+            <Border.Background>
+                <SolidColorBrush Color="Gray" Opacity="0.4"/>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="1">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Width" Value="300"/>
+                            <Setter Property="BorderThickness" Value="5"/>
+                            <Setter Property="BorderBrush" Value="#FF17000B"/>
+                            <Setter Property="Background" Value="#FFF0E970"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsModalVisible}" Value="True"/>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Margin="20">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{DynamicResource m_Trading_Warning}"/>
+                        </Label>
+                        <Button Grid.Row="1" Style="{StaticResource DefaultButton}" Margin="0 0 0 15" Width="100" Command="{Binding CloseWarningCommand}">OK</Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border Grid.RowSpan="3" Panel.ZIndex="10" Visibility="{Binding IsModalVisible, Converter={StaticResource boolConverter}}">
+            <Border.Background>
+                <SolidColorBrush Color="Gray" Opacity="0.4"/>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="1">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Width" Value="750"/>
+                            <Setter Property="BorderThickness" Value="5"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                            <Setter Property="Background" Value="AliceBlue"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsModalVisible}" Value="True"/>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"
+                                   TextAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource m_Trading_Character}"/>
+                        <TabControl Grid.RowSpan="2">
+                            <TabControl.Style>
+                                <Style TargetType="TabControl">
+                                    <Style.Triggers>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="SelectedUser"/>
+                                                    <Binding Source="{x:Null}"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="User.ActiveCharacter"/>
+                                                    <Binding Source="{x:Null}"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                        <DataTrigger Value="True">
+                                            <DataTrigger.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="SelectedUser.ActiveCharacter"/>
+                                                    <Binding Source="{x:Null}"/>
+                                                </MultiBinding>
+                                            </DataTrigger.Binding>
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TabControl.Style>
+                            <TabItem Header="{DynamicResource m_Trading_YourInventory}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <ListView ItemsSource="{Binding User.ActiveCharacter.Inventory.ContainerItems}"
+                                          SelectedItem="{Binding SelectedUserItem}"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid IsItemsHost="True" Columns="4" Rows="4" HorizontalAlignment="Stretch"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Image Source="{Binding Item.Image}"/>
+                                                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Goldenrod" Content="{Binding Quantity}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding UserItemSelectionChangedCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ListView>
+                                    <StackPanel Grid.Row="1">
+                                        <StackPanel.Style>
+                                            <Style TargetType="StackPanel">
+                                                <Style.Triggers>
+                                                    <DataTrigger Value="True">
+                                                        <DataTrigger.Binding>
+                                                            <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                                <Binding Path="UserTradeOfferItem"/>
+                                                                <Binding Source="{x:Null}"/>
+                                                            </MultiBinding>
+                                                        </DataTrigger.Binding>
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </StackPanel.Style>
+                                        <Label Margin="0 10 0 0" HorizontalAlignment="Center" Content="{Binding UserTradeOfferItem.Item.Name}"/>
+                                        <ScrollBar Margin="0 10 0 0" Value="{Binding UserTradeOfferItem.Quantity}"
+                                                   Minimum="0" Maximum="{Binding MaxUserItemQuantity}" SmallChange="1" Width="100">
+                                            <ScrollBar.Template>
+                                                <ControlTemplate TargetType="ScrollBar">
+                                                    <Grid Width="{TemplateBinding Width}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label VerticalAlignment="Center" FontSize="20" MinWidth="20">
+                                                            <MultiBinding Converter="{StaticResource mathConverter}" ConverterParameter="-">
+                                                                <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                                <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                            </MultiBinding>
+                                                        </Label>
+                                                        <RepeatButton Grid.Column="1" Command="{x:Static ScrollBar.LineUpCommand}" Focusable="False">
+                                                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="1" Fill="Gray" Data="M 4,0 L 4,8 L 0,4 Z"/>
+                                                        </RepeatButton>
+                                                        <RepeatButton Grid.Column="2" Command="{x:Static ScrollBar.LineDownCommand}" Focusable="False">
+                                                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="1" Fill="Gray" Data="M 0 0 L 4 4 L 0 8 Z"/>
+                                                        </RepeatButton>
+                                                        <Label Grid.Column="3"  VerticalAlignment="Center" FontSize="20" MinWidth="20"
+                                                           Content="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </ScrollBar.Template>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="ValueChanged">
+                                                    <i:InvokeCommandAction Command="{Binding UserItemQuantityChangedCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ScrollBar>
+                                        <Button Style="{StaticResource DefaultButton}" Margin="10" Width="150" Command="{Binding AddUserTOItemCommand}"
+                                                Content="{DynamicResource m_Trading_AddItem}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Header="{DynamicResource m_Trading_RecInventory}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <ListView ItemsSource="{Binding SelectedUser.ActiveCharacter.Inventory.ContainerItems}"
+                                          SelectedItem="{Binding SelectedRecipientItem}"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid IsItemsHost="True" Columns="4" Rows="4" HorizontalAlignment="Stretch"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Image Source="{Binding Item.Image}"/>
+                                                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Goldenrod" Content="{Binding Quantity}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding RecipientItemSelectionChangedCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ListView>
+                                    <StackPanel Grid.Row="1">
+                                        <StackPanel.Style>
+                                            <Style TargetType="StackPanel">
+                                                <Style.Triggers>
+                                                    <DataTrigger Value="True">
+                                                        <DataTrigger.Binding>
+                                                            <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                                <Binding Path="RecipientTradeOfferItem"/>
+                                                                <Binding Source="{x:Null}"/>
+                                                            </MultiBinding>
+                                                        </DataTrigger.Binding>
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </StackPanel.Style>
+                                        <Label Margin="0 10 0 0" HorizontalAlignment="Center" Content="{Binding RecipientTradeOfferItem.Item.Name}"/>
+                                        <ScrollBar Margin="0 10 0 0" Value="{Binding RecipientTradeOfferItem.Quantity}"
+                                                   Minimum="0" Maximum="{Binding MaxRecipientItemQuantity}" SmallChange="1" Width="100">
+                                            <ScrollBar.Template>
+                                                <ControlTemplate TargetType="ScrollBar">
+                                                    <Grid Width="{TemplateBinding Width}">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition/>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label VerticalAlignment="Center" FontSize="20" MinWidth="20">
+                                                            <MultiBinding Converter="{StaticResource mathConverter}" ConverterParameter="-">
+                                                                <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                                <Binding Path="Value" RelativeSource="{RelativeSource TemplatedParent}"/>
+                                                            </MultiBinding>
+                                                        </Label>
+                                                        <RepeatButton Grid.Column="1" Command="{x:Static ScrollBar.LineUpCommand}" Focusable="False">
+                                                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="1" Fill="Gray" Data="M 4,0 L 4,8 L 0,4 Z"/>
+                                                        </RepeatButton>
+                                                        <RepeatButton Grid.Column="2" Command="{x:Static ScrollBar.LineDownCommand}" Focusable="False">
+                                                            <Path Stroke="{TemplateBinding Foreground}" StrokeThickness="1" Fill="Gray" Data="M 0 0 L 4 4 L 0 8 Z"/>
+                                                        </RepeatButton>
+                                                        <Label Grid.Column="3"  VerticalAlignment="Center" FontSize="20" MinWidth="20"
+                                                           Content="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </ScrollBar.Template>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="ValueChanged">
+                                                    <i:InvokeCommandAction Command="{Binding RecipientItemQuantityChangedCommand}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ScrollBar>
+                                        <Button Style="{StaticResource DefaultButton}" Margin="10" Width="150" Command="{Binding AddRecipientTOItemCommand}"
+                                                Content="{DynamicResource m_Trading_AddItem}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                        <Grid Grid.RowSpan="2" Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Style="{StaticResource DefaultTitle}" HorizontalAlignment="Center"
+                                   Content="{DynamicResource m_Trading_TradeOffer}"/>
+                            <ComboBox Grid.Row="1" Style="{StaticResource DefaultComboBox}" Height="25" Margin="30 0"
+                                      ItemsSource="{Binding UserSet}" SelectedItem="{Binding SelectedUser}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding UserSelectionChangedCommand}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
+                            <Grid Grid.Row="2" Margin="0 10 0 0" Height="300" Background="FloralWhite">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="75"/>
+                                </Grid.RowDefinitions>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label Tag="{DynamicResource m_Trading_YourInventory}">
+                                        <MultiBinding StringFormat="{}{0} ({1})">
+                                            <Binding Path="Tag" RelativeSource="{RelativeSource Mode=Self}"/>
+                                            <Binding Path="User.ActiveCharacter.Name"/>
+                                        </MultiBinding>
+                                    </Label>
+                                    <ListView Grid.Row="1" Margin="5" ItemsSource="{Binding UserTOContainer}" 
+                                          SelectedItem="{Binding SelectedUserItem}"
+                                          Background="#FF393939" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid IsItemsHost="True" Columns="4" Rows="2" HorizontalAlignment="Stretch"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Image Source="{Binding Item.Image}"/>
+                                                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Goldenrod" Content="{Binding Quantity}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding UserItemSelectionChangedCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ListView>
+                                    <Label Tag="{DynamicResource m_Trading_Inventory}" Grid.Row="2">
+                                        <MultiBinding StringFormat="{}{0} {1} ({2})">
+                                            <Binding Path="Tag" RelativeSource="{RelativeSource Mode=Self}"/>
+                                            <Binding Path="SelectedUser.Name"/>
+                                            <Binding Path="SelectedUser.ActiveCharacter.Name"/>
+                                        </MultiBinding>
+                                    </Label>
+                                    <ListView Grid.Row="3" Margin="5" ItemsSource="{Binding RecipientTOContainer}"
+                                          SelectedItem="{Binding SelectedRecipientItem}"
+                                          Background="#FF393939" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <UniformGrid IsItemsHost="True" Columns="4" Rows="2" HorizontalAlignment="Stretch"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Image Source="{Binding Item.Image}"/>
+                                                    <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Goldenrod" Content="{Binding Quantity}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding RecipientItemSelectionChangedCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ListView>
+                                </Grid>
+                                <Grid Grid.Row="2" Height="75">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="75"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox TextWrapping="Wrap" Text="{Binding TradeOfferComment}"/>
+                                    <Button Grid.Column="1" Style="{StaticResource RoundButton}" Command="{Binding SendTradeOfferCommand}">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/Resources/Icon/SendIcon.png"/>
+                                        </Button.Background>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Button Grid.ColumnSpan="2" Style="{StaticResource CloseModalButton}" Command="{Binding CloseModalCommand}">X</Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Style="{StaticResource PrettyButton}" Margin="15 10" Padding="5 0" Command="{Binding CreateTradeOfferCommand}"
+                    Content="{DynamicResource m_Trading_Create}"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="7 0 7 7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{Binding TradeOfferSet}" SelectedItem="{Binding SelectedTradeOffer}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="{Binding Sender.Name}"/>
+                            <Label Grid.Column="1">
+                                <Path Fill="#FF120743" Data="M 0 7 L 0 13 L 10 13 L 10 17 L 20 10 L 10 3 L 10 7 Z"/>
+                            </Label>
+                            <Label Grid.Column="2" Content="{Binding Receiver.Name}"/>
+                            <Label  Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Left">
+                                <TextBlock Grid.ColumnSpan="3" Grid.Row="1" FontSize="10" Text="{Binding Date, StringFormat='{}{0:dd/MM/yyyy hh:mm}'}" Opacity="0.5"/>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{DynamicResource m_Trading_NoTradeOffers}">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                        <Binding Path="SelectedTradeOffer"/>
+                                        <Binding Source="{x:Null}"/>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <Grid Grid.Column="1">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Value="True">
+                                <DataTrigger.Binding>
+                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                        <Binding Path="SelectedTradeOffer"/>
+                                        <Binding Source="{x:Null}"/>
+                                    </MultiBinding>
+                                </DataTrigger.Binding>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Background="White">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding SelectedTradeOffer.Comment}"/>
+                </Label>
+                <Border Grid.Row="1" Padding="15" Background="{StaticResource SemiTransparentBackground}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="15"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label Style="{StaticResource DefaultLabel}" HorizontalAlignment="Left">
+                            <TextBlock Tag="{DynamicResource m_Trading_UserGives}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="{DynamicResource m_Trading_YouGive}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Value="False">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                        <Binding Path="SelectedTradeOffer.Sender"/>
+                                                        <Binding Path="User"/>
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding Path="SelectedTradeOffer.Sender.Name"/>
+                                                            <Binding Path="Tag" RelativeSource="{RelativeSource Mode=Self}"/>
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Label>
+                        <ListBox Grid.Row="1" ItemsSource="{Binding SelectedTradeOffer.SenderContainer.ContainerItems}" 
+                             Background="#FF393939" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid IsItemsHost="True" Columns="4" Rows="2" HorizontalAlignment="Stretch"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Source="{Binding Item.Image}"/>
+                                        <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Goldenrod" Content="{Binding Quantity}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <Label Grid.Row="3" Style="{StaticResource DefaultLabel}" HorizontalAlignment="Left">
+                            <TextBlock Tag="{DynamicResource m_Trading_UserGives}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="{DynamicResource m_Trading_YouGive}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Value="False">
+                                                <DataTrigger.Binding>
+                                                    <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                        <Binding Path="SelectedTradeOffer.Receiver"/>
+                                                        <Binding Path="User"/>
+                                                    </MultiBinding>
+                                                </DataTrigger.Binding>
+                                                <Setter Property="Text">
+                                                    <Setter.Value>
+                                                        <MultiBinding StringFormat="{}{0} {1}">
+                                                            <Binding Path="SelectedTradeOffer.Receiver.Name"/>
+                                                            <Binding Path="Tag" RelativeSource="{RelativeSource Mode=Self}"/>
+                                                        </MultiBinding>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Label>
+                        <ListBox Grid.Row="4" ItemsSource="{Binding SelectedTradeOffer.ReceiverContainer.ContainerItems}" 
+                             Background="#FF393939" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid IsItemsHost="True" Columns="4" Rows="2" HorizontalAlignment="Stretch"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Source="{Binding Item.Image}"/>
+                                        <Label HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Goldenrod" Content="{Binding Quantity}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+                <Button Grid.Row="2" Margin="10" Width="200" Command="{Binding AcceptTradeOfferCommand}" Content="{DynamicResource m_Trading_Accept}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource DefaultButton}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding SelectedTradeOffer.IsActive}" Value="True"/>
+                                        <Condition Value="True">
+                                            <Condition.Binding>
+                                                <MultiBinding Converter="{StaticResource equalityConverter}">
+                                                    <Binding Path="SelectedTradeOffer.Receiver"/>
+                                                    <Binding Path="User"/>
+                                                </MultiBinding>
+                                            </Condition.Binding>
+                                        </Condition>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="GameWPF.View.Header"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GameWPF.View"
+             xmlns:vm="clr-namespace:GameWPF.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="75" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource RoundButton}"/>
+    </UserControl.Resources>
+    <Grid Background="{DynamicResource HeaderBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="75"/>
+        </Grid.ColumnDefinitions>
+        <Button Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Menu}">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icon/MenuIcon.png"/>
+            </Button.Background>
+        </Button>
+        <Button Grid.Column="2" Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Messaging}">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icon/MailIcon.png"/>
+            </Button.Background>
+        </Button>
+        <Button Grid.Column="3" Command="{Binding SetVMCommand}" CommandParameter="{x:Static vm:ViewModelEnum.Trading}">
+            <Button.Background>
+                <ImageBrush ImageSource="/Resources/Icon/TradeIcon.png"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</UserControl>

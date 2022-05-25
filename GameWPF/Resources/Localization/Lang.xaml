@@ -1,0 +1,115 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="m_PasswordTip">Password must contain</s:String>
+    <s:String x:Key="m_PasswordTip1">● A lower case letter</s:String>
+    <s:String x:Key="m_PasswordTip2">● A capital (uppercase) letter</s:String>
+    <s:String x:Key="m_PasswordTip3">● A number</s:String>
+    <s:String x:Key="m_PasswordTip4">● Minimum 8 characters</s:String>
+
+    <s:String x:Key="m_Login_Login">Login</s:String>
+    <s:String x:Key="m_Login_EnterLogin">Enter your login</s:String>
+    <s:String x:Key="m_Login_Password">Password</s:String>
+    <s:String x:Key="m_Login_Remember">Remember me</s:String>
+    <s:String x:Key="m_Login_Warning">Incorrect login or password</s:String>
+    <s:String x:Key="m_Login_SignIn">Sign in</s:String>
+    <s:String x:Key="m_Login_RegisterRef">Create account.</s:String>
+
+    <s:String x:Key="m_Register_Name">Name</s:String>
+    <s:String x:Key="m_Register_EnterName">Enter your name</s:String>
+    <s:String x:Key="m_Register_Login">Login</s:String>
+    <s:String x:Key="m_Register_EnterLogin">Enter your login</s:String>
+    <s:String x:Key="m_Register_Password">Password</s:String>
+    <s:String x:Key="m_Register_Repeat">Repeat password</s:String>
+    <s:String x:Key="m_Register_Warning">This login is already in use</s:String>
+    <s:String x:Key="m_Register_Register">Register</s:String>
+    <s:String x:Key="m_Register_LoginRef">Have an account? Sign in.</s:String>
+
+    <s:String x:Key="m_Play_Warning">You need to choose active character!</s:String>
+    <s:String x:Key="m_Play_Menu">Menu</s:String>
+    
+    <s:String x:Key="m_Menu_Play">Play</s:String>
+    <s:String x:Key="m_Menu_Character">Character</s:String>
+    <s:String x:Key="m_Menu_Store">Store</s:String>
+    <s:String x:Key="m_Menu_Settings">Settings</s:String>
+    <s:String x:Key="m_Menu_Exit">Exit</s:String>
+
+    <s:String x:Key="m_Character_New">New character</s:String>
+    <s:String x:Key="m_Character_Health">Health</s:String>
+    <s:String x:Key="m_Character_Endurance">Endurance</s:String>
+    <s:String x:Key="m_Character_Damage">Damage</s:String>
+    <s:String x:Key="m_Character_SelectClass">Select chracter class</s:String>
+    <s:String x:Key="m_Character_EnterName">Enter chracter name</s:String>
+    <s:String x:Key="m_Character_Confirm">Confirm</s:String>
+    <s:String x:Key="m_Character_ItemEquip">Equip</s:String>
+    <s:String x:Key="m_Character_ItemSell">Sell</s:String>
+    <s:String x:Key="m_Character_ItemRemove">Remove</s:String>
+    <s:String x:Key="m_Character_Create">Create new character</s:String>
+    <s:String x:Key="m_Character_Choose">Choose this character</s:String>
+
+    <s:String x:Key="m_Shop_PurchaseItem">Purchase item</s:String>
+    <s:String x:Key="m_Shop_Purchase">Purchase</s:String>
+    <s:String x:Key="m_Shop_PurchaseWarning">To purchase items you need to choose active character first!</s:String>
+    <s:String x:Key="m_Shop_ItemClass">Item class</s:String>
+    <s:String x:Key="m_Shop_CommandTip">E - purchase</s:String>
+    <s:String x:Key="m_Shop_Warning">Choose your active character first!</s:String>
+
+    <s:String x:Key="m_Messaging_Select">Select user to chat with.</s:String>
+    <s:String x:Key="m_Messaging_NoMessages">No messages yet.</s:String>
+
+    <s:String x:Key="m_Trading_Warning">Tradeoffer was not accepted, because contains invalid or outdated data!</s:String>
+    <s:String x:Key="m_Trading_Character">To make offer you and your recipient should choose active character</s:String>
+    <s:String x:Key="m_Trading_YourInventory">Your inventory</s:String>
+    <s:String x:Key="m_Trading_RecInventory">Recipient's inventory</s:String>
+    <s:String x:Key="m_Trading_AddItem">Add item</s:String>
+    <s:String x:Key="m_Trading_TradeOffer">Trade offer</s:String>
+    <s:String x:Key="m_Trading_RecInventory1">Inventory of</s:String>
+    <s:String x:Key="m_Trading_Create">Create trade offer</s:String>
+    <s:String x:Key="m_Trading_NoTradeOffers">No trade offers yet.</s:String>
+    <s:String x:Key="m_Trading_YouGive">You give</s:String>
+    <s:String x:Key="m_Trading_UserGives">gives</s:String>
+    <s:String x:Key="m_Trading_Accept">Accept</s:String>
+
+    <s:String x:Key="m_Settings_Language">Language</s:String>
+    <s:String x:Key="m_Settings_Mode">Window mode</s:String>
+    <s:String x:Key="m_Settings_DoNotLogOut">Do not log out</s:String>
+    <s:String x:Key="m_Settings_Save">Save changes</s:String>
+    <s:String x:Key="m_Settings_LogOut">Log Out</s:String>
+    <s:String x:Key="m_Settings_AdminRef">Administration</s:String>
+    <s:String x:Key="m_Settings_FullScreen">Full screen</s:String>
+    <s:String x:Key="m_Settings_Windowed">Windowed</s:String>
+    <s:String x:Key="m_Settings_WindowBordered">Window bordered</s:String>
+
+    <s:String x:Key="m_Admin_Editing">User editing</s:String>
+    <s:String x:Key="m_Admin_UserRole">User role</s:String>
+    <s:String x:Key="m_Admin_UserStatus">User status</s:String>
+    <s:String x:Key="m_Admin_Ok">Ok</s:String>
+    <s:String x:Key="m_Admin_Edit">Edit</s:String>
+    <s:String x:Key="m_Admin_Name">Name</s:String>
+    <s:String x:Key="m_Admin_Login">Login</s:String>
+    <s:String x:Key="m_Admin_Role">Role</s:String>
+    <s:String x:Key="m_Admin_Status">Status</s:String>
+    <s:String x:Key="m_Admin_Messages">Messages</s:String>
+    <s:String x:Key="m_Admin_Sender">Sender</s:String>
+    <s:String x:Key="m_Admin_Receiver">Receiver</s:String>
+    <s:String x:Key="m_Admin_Date">Date</s:String>
+    <s:String x:Key="m_Admin_Text">Text</s:String>
+    <s:String x:Key="m_Admin_TradeOffers">Trade Offers</s:String>
+    <s:String x:Key="m_Admin_Items">Items</s:String>
+    <s:String x:Key="m_Admin_Comment">Comment</s:String>
+    <s:String x:Key="m_Admin_UserGives">gives</s:String>
+    <s:String x:Key="m_Admin_Characters">Characters</s:String>
+    <s:String x:Key="m_Admin_Class">Class</s:String>
+    <s:String x:Key="m_Admin_Level">Level</s:String>
+    <s:String x:Key="m_Admin_Exp">Exp</s:String>
+    <s:String x:Key="m_Admin_Gold">Gold</s:String>
+    <s:String x:Key="m_Admin_Health">Health</s:String>
+    <s:String x:Key="m_Admin_Endurance">Endurance</s:String>
+    <s:String x:Key="m_Admin_Damage">Damage</s:String>
+    <s:String x:Key="m_Admin_Weapon">Weapon</s:String>
+    <s:String x:Key="m_Admin_Util">Util</s:String>
+    <s:String x:Key="m_Admin_Head">Head</s:String>
+    <s:String x:Key="m_Admin_Armor">Armor</s:String>
+    
+</ResourceDictionary>

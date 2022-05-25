@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="GameWPF.View.RegisterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:s="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:GameWPF.View"
+        mc:Ignorable="d"
+        d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="{DynamicResource RegisterBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" Style="{StaticResource AuthPanel}" Width="300">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center">
+                    <Label Margin="0 10 0 0" Content="{DynamicResource m_Register_Name}"/>
+                    <TextBox Style="{StaticResource PlaceHolder}" Tag="{DynamicResource m_Register_EnterName}" Text="{Binding UserName}"/>
+                    <Label Margin="0 10 0 0" Content="{DynamicResource m_Register_Login}"/>
+                    <TextBox Style="{StaticResource PlaceHolder}" Tag="{DynamicResource m_Register_EnterLogin}" Text="{Binding UserLogin}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="TextChanged">
+                                <i:InvokeCommandAction Command="{Binding LoginChangedCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </TextBox>
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{DynamicResource m_Register_Password}"/>
+                        <Label Grid.Column="1" Style="{StaticResource PswValidation}">
+                            <Label.ToolTip>
+                                <ToolTip>
+                                    <StackPanel>
+                                        <StackPanel.Resources>
+                                            <Style TargetType="Label">
+                                                <Setter Property="Margin" Value="0 5 0 0"/>
+                                            </Style>
+                                        </StackPanel.Resources>
+                                        <Label Content="{DynamicResource m_PasswordTip}"/>
+                                        <Label Content="{DynamicResource m_PasswordTip1}"/>
+                                        <Label Content="{DynamicResource m_PasswordTip2}"/>
+                                        <Label Content="{DynamicResource m_PasswordTip3}"/>
+                                        <Label Content="{DynamicResource m_PasswordTip4}"/>
+                                    </StackPanel>
+                                </ToolTip>
+                            </Label.ToolTip>
+                            <Image VerticalAlignment="Bottom" Source="/Resources/Icon/WarningIcon.png"/>
+                        </Label>
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="40"/>
+                        </Grid.ColumnDefinitions>
+                        <PasswordBox Grid.ColumnSpan="2" Style="{StaticResource PswBoxStyle}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}"
+                                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=PasswordBox}}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                        <TextBlock Grid.ColumnSpan="2" Style="{StaticResource PswTextStyle}" Text="{Binding UserPassword}"/>
+                        <Button Grid.Column="1" Style="{StaticResource TogglePswVisibility}" Content="👁">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PreviewMouseDown">
+                                    <i:InvokeCommandAction Command="{Binding TogglePasswordCommand}">
+                                        <i:InvokeCommandAction.CommandParameter>
+                                            <s:Boolean>True</s:Boolean>
+                                        </i:InvokeCommandAction.CommandParameter>
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="PreviewMouseUp">
+                                    <i:InvokeCommandAction Command="{Binding TogglePasswordCommand}">
+                                        <i:InvokeCommandAction.CommandParameter>
+                                            <s:Boolean>False</s:Boolean>
+                                        </i:InvokeCommandAction.CommandParameter>
+                                    </i:InvokeCommandAction>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </Grid>
+                    <Label Margin="0 10 0 0" Content="{DynamicResource m_Register_Repeat}"/>
+                    <Grid Margin="0 0 0 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+                        <PasswordBox Grid.ColumnSpan="2" Style="{StaticResource PswBoxStyle}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="PasswordChanged">
+                                    <i:InvokeCommandAction Command="{Binding PswrptChangedCommand}"
+                                               CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=PasswordBox}}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </PasswordBox>
+                        <TextBlock Grid.ColumnSpan="2" Style="{StaticResource PswTextStyle}" Text="{Binding PasswordRepeat}"/>
+                        <Label Grid.Column="1">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding PasswordRepeatStatus}" Value="1">
+                                            <Setter Property="Content" Value="✔"/>
+                                            <Setter Property="Foreground" Value="LightGreen"/>
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding PasswordRepeatStatus}" Value="-1">
+                                            <Setter Property="Content" Value="❌"/>
+                                            <Setter Property="Foreground" Value="Red"/>
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding PasswordRepeatStatus}" Value="0">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                    </Grid>
+                    <Label HorizontalAlignment="Center" Foreground="Red"
+                Visibility="{Binding IsUserIncorrect, Converter={StaticResource boolConverter}}" Content="{DynamicResource m_Register_Warning}"/>
+                    <Button Style="{StaticResource DefaultButton}" Width="200" Command="{Binding RegisterCommand}"
+                            Content="{DynamicResource m_Register_Register}"/>
+                    <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource RefButton}" Command="{Binding SetLoginVMCommand}"
+                                Content="{DynamicResource m_Register_LoginRef}"/>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

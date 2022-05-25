@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище GameDBModelContainer" CdmEntityContainer="GameDBContainer">
+    <EntitySetMapping Name="CharacterClasses">
+      <EntityTypeMapping TypeName="GameDBModel.CharacterClass">
+        <MappingFragment StoreEntitySet="CharacterClasses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BaseHealth" ColumnName="BaseHealth" />
+          <ScalarProperty Name="BaseEndurance" ColumnName="BaseEndurance" />
+          <ScalarProperty Name="BaseDamage" ColumnName="BaseDamage" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Characters">
+      <EntityTypeMapping TypeName="GameDBModel.Character">
+        <MappingFragment StoreEntitySet="Characters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="Gold" ColumnName="Gold" />
+          <ScalarProperty Name="Health" ColumnName="Health" />
+          <ScalarProperty Name="Endurance" ColumnName="Endurance" />
+          <ScalarProperty Name="Damage" ColumnName="Damage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContainerItems">
+      <EntityTypeMapping TypeName="GameDBModel.ContainerItem">
+        <MappingFragment StoreEntitySet="ContainerItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Containers">
+      <EntityTypeMapping TypeName="GameDBModel.Container">
+        <MappingFragment StoreEntitySet="Containers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="GameDBModel.Item">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Stat" ColumnName="Stat" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemTypes">
+      <EntityTypeMapping TypeName="GameDBModel.ItemType">
+        <MappingFragment StoreEntitySet="ItemTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="GameDBModel.Message">
+        <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="IsNew" ColumnName="IsNew" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TradeOffers">
+      <EntityTypeMapping TypeName="GameDBModel.TradeOffer">
+        <MappingFragment StoreEntitySet="TradeOffers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="GameDBModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="GameDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="PswHash" ColumnName="PswHash" />
+          <ScalarProperty Name="PswSalt" ColumnName="PswSalt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserStatuses">
+      <EntityTypeMapping TypeName="GameDBModel.UserStatus">
+        <MappingFragment StoreEntitySet="UserStatuses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_CharacterCharacterClass" TypeName="GameDBModel.FK_CharacterCharacterClass" StoreEntitySet="Characters">
+      <EndProperty Name="CharacterClasses">
+        <ScalarProperty Name="Id" ColumnName="Class_Id" />
+      </EndProperty>
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ItemItemClass" TypeName="GameDBModel.FK_ItemItemClass" StoreEntitySet="Items">
+      <EndProperty Name="CharacterClasses">
+        <ScalarProperty Name="Id" ColumnName="ItemClass_Id" />
+      </EndProperty>
+      <EndProperty Name="Items">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CharacterArmor" TypeName="GameDBModel.FK_CharacterArmor" StoreEntitySet="Characters">
+      <EndProperty Name="ContainerItems">
+        <ScalarProperty Name="Id" ColumnName="Armor_Id" />
+      </EndProperty>
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="Armor_Id" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CharacterHead" TypeName="GameDBModel.FK_CharacterHead" StoreEntitySet="Characters">
+      <EndProperty Name="ContainerItems">
+        <ScalarProperty Name="Id" ColumnName="Head_Id" />
+      </EndProperty>
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="Head_Id" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CharacterInventory" TypeName="GameDBModel.FK_CharacterInventory" StoreEntitySet="Characters">
+      <EndProperty Name="Containers">
+        <ScalarProperty Name="Id" ColumnName="Inventory_Id" />
+      </EndProperty>
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CharacterUtil" TypeName="GameDBModel.FK_CharacterUtil" StoreEntitySet="Characters">
+      <EndProperty Name="ContainerItems">
+        <ScalarProperty Name="Id" ColumnName="Util_Id" />
+      </EndProperty>
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="Util_Id" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_CharacterWeapon" TypeName="GameDBModel.FK_CharacterWeapon" StoreEntitySet="Characters">
+      <EndProperty Name="ContainerItems">
+        <ScalarProperty Name="Id" ColumnName="Weapon_Id" />
+      </EndProperty>
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="Weapon_Id" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserActiveCharacter" TypeName="GameDBModel.FK_UserActiveCharacter" StoreEntitySet="Users">
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="ActiveCharacter_Id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="ActiveCharacter_Id" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserCharacters" TypeName="GameDBModel.FK_UserCharacters" StoreEntitySet="Characters">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Characters">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ContainerItemContainer" TypeName="GameDBModel.FK_ContainerItemContainer" StoreEntitySet="ContainerItems">
+      <EndProperty Name="Containers">
+        <ScalarProperty Name="Id" ColumnName="Container_Id" />
+      </EndProperty>
+      <EndProperty Name="ContainerItems">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ContainerItemItem" TypeName="GameDBModel.FK_ContainerItemItem" StoreEntitySet="ContainerItems">
+      <EndProperty Name="Items">
+        <ScalarProperty Name="Id" ColumnName="Item_Id" />
+      </EndProperty>
+      <EndProperty Name="ContainerItems">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_TradeOfferReceiverContainer" TypeName="GameDBModel.FK_TradeOfferReceiverContainer" StoreEntitySet="TradeOffers">
+      <EndProperty Name="Containers">
+        <ScalarProperty Name="Id" ColumnName="ReceiverContainer_Id" />
+      </EndProperty>
+      <EndProperty Name="TradeOffers">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_TradeOfferSenderContainer" TypeName="GameDBModel.FK_TradeOfferSenderContainer" StoreEntitySet="TradeOffers">
+      <EndProperty Name="Containers">
+        <ScalarProperty Name="Id" ColumnName="SenderContainer_Id" />
+      </EndProperty>
+      <EndProperty Name="TradeOffers">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_ItemItemType" TypeName="GameDBModel.FK_ItemItemType" StoreEntitySet="Items">
+      <EndProperty Name="ItemTypes">
+        <ScalarProperty Name="Id" ColumnName="ItemType_Id" />
+      </EndProperty>
+      <EndProperty Name="Items">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_MessageReceiver" TypeName="GameDBModel.FK_MessageReceiver" StoreEntitySet="Messages">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Receiver_Id" />
+      </EndProperty>
+      <EndProperty Name="Messages">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_MessageSender" TypeName="GameDBModel.FK_MessageSender" StoreEntitySet="Messages">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Sender_Id" />
+      </EndProperty>
+      <EndProperty Name="Messages">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_TradeOfferReceiver" TypeName="GameDBModel.FK_TradeOfferReceiver" StoreEntitySet="TradeOffers">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Receiver_Id" />
+      </EndProperty>
+      <EndProperty Name="TradeOffers">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_TradeOfferSender" TypeName="GameDBModel.FK_TradeOfferSender" StoreEntitySet="TradeOffers">
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Sender_Id" />
+      </EndProperty>
+      <EndProperty Name="TradeOffers">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserUserRole" TypeName="GameDBModel.FK_UserUserRole" StoreEntitySet="Users">
+      <EndProperty Name="UserRoles">
+        <ScalarProperty Name="Id" ColumnName="Role_Id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_UserUserStatus" TypeName="GameDBModel.FK_UserUserStatus" StoreEntitySet="Users">
+      <EndProperty Name="UserStatuses">
+        <ScalarProperty Name="Id" ColumnName="Status_Id" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
